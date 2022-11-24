@@ -123,7 +123,7 @@ int sdt_ecc_verify(unsigned char *hash, unsigned int hash_len, \
     -- random_len[in]	    : 随机数长度
 	-- pk[in]			    : 公钥
 	-- pk_len[in]		    : 公钥长度
-	-- cipher_data[out]		: 密文数据
+	-- cipher_data[out]		: 密文数据  格式：C1C2C3，其中C1-64字节  C2-明文长  C3-32字节
 	-- cipher_data_len[out]	: 密文数据长度
 						
 * return				: 0--success; 
