@@ -180,7 +180,7 @@ int sdt_ecc_sign(unsigned char *hash, unsigned int hash_len,
 	if(NULL == hash || SDT_HASH_LEN != hash_len \
 		|| NULL == random || SDT_ECC_RANDOM_LEN != random_len \
 		|| NULL == sk || SDT_ECC_SK_LEN != sk_len \
-		|| NULL == sign)
+		|| NULL == sign || SDT_ECC_SING_LEN > *sign_len)
 	{
 		return ERR_PARAM;
 	}
