@@ -6,10 +6,10 @@ OBJ = SM3.o SM2.o SM4.o SdtSM.o
 all: $(TGT) $(APP)
 
 $(OBJ): %o:%c
-	$(CC) -c $(CFLAGS) -fPIC $? -o $@
+	$(CC) -c $(CFLAGS) -fPIC $? -o $@ $(OPT)
 
 $(TGT):$(OBJ) 
-	$(CC) $(CFLAGS) -shared -fPIC -o $(TGT) $(OBJ) $(OPT)
+	$(CC) $(CFLAGS) -shared -fPIC -o $(TGT) $(OBJ) 
 	cp libsdtsm.so ../lib
 	
 clean:
