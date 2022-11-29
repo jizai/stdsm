@@ -31,7 +31,6 @@ int main()
 	unsigned char sk[32]="12513";
 	unsigned char pk[64];
 	
-
 	printf("\n====Test  GenSm2 Key====\n");
 	vl_Rst = sdt_ecc_makekey(sk, 32, pk, &pk_len);
 	if(vl_Rst)
@@ -45,16 +44,11 @@ int main()
 	ArrayPrint(pk,64);
 
 
-	printf("A is:\n");
-	ArrayPrint(pk, 64);
-
 	printf("\n\n====Test  Calc Z ====\n");
 	unsigned char gmz[32];
 	unsigned int gmzlen = 32;
 	unsigned char prodata1[512], prodata2[512];
 	unsigned int pzLen = 0;
-
-	
 
 	//  Z = SM3(ENTL || ID || a || b || XG || yG || XA || yA)
 	memset(prodata1, 0, 512);
@@ -62,12 +56,11 @@ int main()
 	pzLen += 2;
 	memcpy(prodata1 + pzLen, SeId, 16);// ID 为用户身份标识
 	pzLen += 16;
-	memcpy(prodata1 + pzLen, gmpara, 128);// a、b 为系统曲线参考；
+	memcpy(prodata1 + pzLen, gmpara, 128);// 固定系统参数
 	pzLen += 128;
 	memcpy(prodata1 + pzLen, pk, 64);// XA、yA 为用户公钥；
 	pzLen += 64;
-	printf("Prodata is:\n");
-	ArrayPrint(prodata1, pzLen);
+
 	vl_Rst = sdt_hash(prodata1, pzLen, gmz, &gmzlen);
 	if (vl_Rst)
 	{
@@ -76,7 +69,6 @@ int main()
 	}
 	printf("Z Hash Success, pzLen:%d, hash data len:%d\n", pzLen, gmzlen);
 	ArrayPrint(gmz, 32);
-
 
 	// H = SM3(Z||M)
 	unsigned char gmh[32];
